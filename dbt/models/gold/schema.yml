@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: dim_date
+    columns:
+      - name: date_key
+        tests: [unique, not_null]
+  - name: dim_geography
+    columns:
+      - name: geography_key
+        tests: [unique, not_null]
+  - name: dim_product
+    columns:
+      - name: sku
+        tests: [unique, not_null]
+  - name: dim_status
+    columns:
+      - name: status_category
+        tests: [unique, not_null]
+  - name: mart_atypical_addresses
+    columns:
+      - name: address_id
+        tests: [unique, not_null]
+  - name: fact_sales
+    description: Grain = one sale line (order_id + sku).
+    columns:
+      - name: sale_line_key
+        tests: [unique, not_null]
+      - name: date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: geography_key
+        tests:
+          - relationships:
+              to: ref('dim_geography')
+              field: geography_key
+      - name: status_category
+        tests:
+          - relationships:
+              to: ref('dim_status')
+              field: status_category
+  - name: mart_zone_summary
+    columns:
+      - name: zone
+        tests: [unique, not_null]

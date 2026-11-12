@@ -1,0 +1,4 @@
+-r requirements.txt
+pytest>=8
+sqlglot>=25
+jinja2>=3.1

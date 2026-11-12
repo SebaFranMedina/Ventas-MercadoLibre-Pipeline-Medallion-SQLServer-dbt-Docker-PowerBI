@@ -1,0 +1,33 @@
+name: ml_ventas
+version: "1.0.0"
+config-version: 2
+profile: ml_ventas
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+
+vars:
+  # An address is "atypical" when it has at least this many orders AND this % of them were returned.
+  atypical_min_orders: 20
+  atypical_min_returned_pct: 50
+
+models:
+  ml_ventas:
+    silver:
+      +schema: silver
+      +materialized: table
+    gold:
+      +schema: gold
+      +materialized: table
+
+seeds:
+  ml_ventas:
+    +schema: seeds
+    product_prices:
+      +column_types:
+        sku: nvarchar(100)
+        unit_price: decimal(12,2)
+        unit_cost: decimal(12,2)
+        fee_pct: decimal(5,2)

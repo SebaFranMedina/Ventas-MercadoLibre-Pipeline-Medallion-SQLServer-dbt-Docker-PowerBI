@@ -1,0 +1,17 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+logs/
+# Real data never goes in the repo
+data/raw/*
+!data/raw/.gitkeep
+salida_eda/
+*PRIVADO*
+*.xlsx
+!data/sample/sample_sales.xlsx
+dbt/.user.yml

@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: bronze
+    description: Raw Mercado Libre export, loaded as text by `python -m ml_pipeline.ingest`. Personal data is already pseudonymised.
+    schema: bronze
+    tables:
+      - name: sales_raw
+        description: One row per row of the Excel export, per loaded file (append only).
+        columns:
+          - name: ventas_de_venta
+            description: Order number ("# de venta").
+            tests:
+              - not_null
+          - name: _file_hash
+            tests:
+              - not_null
+          - name: _loaded_at
+            tests:
+              - not_null

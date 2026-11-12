@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: sales
+    description: One clean row per sale line (order_id + sku). Latest bronze version wins.
+    columns:
+      - name: order_id
+        tests: [not_null]
+      - name: status_category
+        tests:
+          - not_null
+          - accepted_values:
+              values: [Delivered, In transit, Preparing, Claim resolved, Exchange, Returned, Failed delivery,
+                       Cancelled, Package header, Other]
+      - name: zone
+        tests:
+          - accepted_values:
+              values: [CABA, GBA (approx.), Rest of Buenos Aires, Interior, Unknown]
+      - name: is_returned
+        tests:
+          - accepted_values:
+              values: [0, 1]
+              quote: false
+      - name: has_claim
+        tests:
+          - accepted_values:
+              values: [0, 1]
+              quote: false
