@@ -1,5 +1,7 @@
 # ml-sales-medallion
 
+![CI](https://github.com/SebaFranMedina/Ventas-MercadoLibre-Pipeline-Medallion-SQLServer-dbt-Docker-PowerBI/actions/workflows/ci.yml/badge.svg)
+
 End-to-end **medallion pipeline (bronze → silver → gold) on SQL Server** for a Mercado Libre sales export,
 with **dbt**, **Docker Compose**, **GitHub Actions** and a Power BI-ready star schema.
 
